@@ -1,0 +1,144 @@
+<html><head>
+
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    
+    
+    <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type="text/css">
+     <script type="text/javascript" src="js/jquery-1.10.2.min.js.download"></script> 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <style type="text/css"> @import url('https://fonts.googleapis.com/css?family=Nunito');@import url('https://fonts.googleapis.com/css?family=Poiret+One');body, html {height: 100%;background-repeat: no-repeat; /*background-image: linear-gradient(rgb(12, 97, 33),rgb(104, 145, 162));*/background:black;position: relative;}#particles-js{ width: 100%; height: 100%; background-size: cover; background-position: 50% 50%; position: fixed; top: 0px; z-index:1;}h1{font:1.5em Cinzel,serif;font-weight:400;letter-spacing:.35em;text-shadow:0 0 25px rgba(254,254,255,.85);width:70%} } footer { margin: 20%; }
+    #a {
+    onmousedown:stop;
+    animation-name: rotate ;
+    animation-duration: 5s;
+    animation-play-state: running;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 1.0;filter: alpha(opacity=50);} img:hover {opacity: 1.0;filter: alpha(opacity=100);}
+    @keyframes rotate{
+    10% {transform:rotateY(36deg)}
+    20% {transform:rotateY(72deg)}
+    30% {transform:rotateY(108deg)}
+    40% {transform:rotateY(144deg)}
+    50% {transform:rotateY(180deg)}
+    60% {transform:rotateY(216deg)}
+    70% {transform:rotateY(252deg)}
+    80% {transform:rotateY(288deg)}
+    90% {transform:rotateY(324deg)}
+    100% {transform:rotateY(360deg)}
+    }
+    
+    
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .hacking-animation {
+      background: #000;
+      height: 100%;
+    }
+    .hacking-animation__text {
+      bottom: 0;
+      font-family: monospace;
+      font-size: 18px;
+      left: 0;
+      line-height: 1.5rem;
+      padding: 2rem;
+      position: absolute;
+      right: 0;
+      background: transparent;
+      border:none;
+    }
+    .hacking-animation__character {
+      animation: type 500ms linear;
+      color: #00a000;
+    }
+    
+    @keyframes type {
+      0% {
+        background: #fff;
+        color: #fff;
+      }
+      5% {
+        background: transparent;
+        color: #fff;
+      }
+      100% {
+        background: transparent;
+        color: #00a000;
+      }
+    }
+    
+    </style>
+    
+    
+    </head> </html>
+  
+    
+    <script>
+        
+    
+    
+    
+    
+    window.onload = hacking;//Llamamos a la funcion despues de que el documento ha sido cargado completamente
+    function hacking(){
+        var c = document.getElementById("umarcbs");
+        c.height = window.innerHeight;  //innerHeight se utiliza para saber la altura de la pantalla
+        c.width = window.innerWidth;    //innerHeight se utiliza para saber la altura de la pantalla
+    
+        
+        var letraTam=12; //Tamaño de la letras por pixel
+        var columnas=c.width/letraTam; //El ancho dividido por el tamano que tendra las letras
+        
+        var letras=[];
+        for(var i=0; i<columnas;i++){
+            letras[i]=1;//Siver para saber la cantidad de letras que tendra en la pantalla
+        }
+        contexto= c.getContext('2d');//Muy importante especificar el contexto en el cual vamos a trabajar
+    
+        function dibujar(){
+            contexto.fillStyle="rgba(0,0,0,0.05)";//Damos el color que tendra el recuadro en el que estara la animacion. en este caso sera transparente 0.05
+            contexto.fillRect(0,0,c.width,c.height);//Damos las dimensiones alto y ancho que tendra el cuadrado, que en este caso es de toda la pantalla
+    
+            contexto.fillStyle= "#00b07c";//Color de las letras
+            contexto.font= letraTam+"px digital-7";//Tamaño de la letra
+    
+            for(var i=0;i<letras.length;i++){
+                text=elegirTexto();
+                Texto=text.split("");
+                contexto.fillText(Texto,i*letraTam, letras[i]*letraTam);//Para imprimir texto disponesmos de fillText(texto,x,y)
+                
+    
+                if(letras[i]*letraTam > c.height && Math.random()>0.975){
+                    letras[i]=0;
+                }
+                letras[i]++;
+    
+            }
+    
+        }
+        //La funcion elegirTexto me permite elegir aleatoriamente el texto a utilizar en un cajon o columna
+        //Esto lo conseguimos gracias a la tabla de caracteres ASCII con los cuales podremos convertir el valor
+        //Numerico al valor real. 
+            function elegirTexto(){
+            var numTexto=Math.floor((Math.random()*94)+33);//Elegimos un caso en base a un numero aleatorio
+                    return String.fromCharCode(parseInt(numTexto));//Convertimos el valor a entero y despues a su valor correspondiente ASCII
+                }
+        setInterval(dibujar,120);//velocidad a la que se ejecuta la funcion en milisegundos
+    
+    }
+    </script>
+
+    
+
+    </html>
